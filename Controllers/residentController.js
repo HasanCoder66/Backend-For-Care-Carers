@@ -1,4 +1,4 @@
-import  Resident  from "../Models/ResidentModel.js";
+import Resident from "../Models/ResidentModel.js";
 
 //====================  NEW PRODUCT =========================//
 export const createResident = async (req, res, next) => {
@@ -18,34 +18,38 @@ export const createResident = async (req, res, next) => {
 // //UPDATE USER
 // // /user/:userId
 export const updateResident = async (req, res, next) => {
-    try {
-        const updateResident = await Resident.findByIdAndUpdate(req.params.residentId, {
-            $set: req.body
-        }, { new: true });
-        res.status(200).send({
-            status: "Successful",
-            message: "Product Updated Successfully",
-            data: updateResident,
-        });
-    } catch (error) {
-        next(error)
-    }
-}
+  try {
+    const updateResident = await Resident.findByIdAndUpdate(
+      req.params.residentId,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      status: "Successful",
+      message: "Product Updated Successfully",
+      data: updateResident,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // //DELETE USER
 // // /user/:userId
 
-// export const deleteProduct = async (req, res, next) => {
-//     try {
-//         await Product.findByIdAndDelete(req.params.productId);
-//         res.status(200).send({
-//             status: "Successfull",
-//             message: "Product deleted Successfully",
-//         });
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+export const deleteResident = async (req, res, next) => {
+  try {
+    await Resident.findByIdAndDelete(req.params.residentId);
+    res.status(200).send({
+      status: "Successful",
+      message: "Product deleted Successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // //GET USER
 // // /user/find/:userId
