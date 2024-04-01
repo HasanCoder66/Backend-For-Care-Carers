@@ -2,10 +2,10 @@ import express from "express";
 import { verifyAdmin, verifyUser } from "../Utils/verifyToken.js";
 import {
   createResident,
+  updateResident,
 //   deleteProduct,
 //   getAllProducts,
 //   getProduct,
-//   updateProduct,
 } from "../Controllers/residentController.js";
 
 const residentRoutes = express.Router();
@@ -14,7 +14,7 @@ const residentRoutes = express.Router();
 residentRoutes.post("/", verifyAdmin, createResident);
 
 //======================= UPDATE PRODUCT ======================//
-// residentRoutes.put("/:productId", verifyAdmin, updateProduct);
+residentRoutes.put("/:residentId", verifyAdmin, updateResident);
 
 //======================= DELETE PRODUCT ======================//
 // residentRoutes.delete("/:productId", verifyAdmin, deleteProduct);

@@ -1,4 +1,4 @@
-import  ResidentModal  from "../Models/ResidentModel.js";
+import  Resident  from "../Models/ResidentModel.js";
 
 //====================  NEW PRODUCT =========================//
 export const createResident = async (req, res, next) => {
@@ -17,20 +17,20 @@ export const createResident = async (req, res, next) => {
 
 // //UPDATE USER
 // // /user/:userId
-// export const updateProduct = async (req, res, next) => {
-//     try {
-//         const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, {
-//             $set: req.body
-//         }, { new: true });
-//         res.status(200).send({
-//             status: "Successfull",
-//             message: "Product Updated Successfully",
-//             data: updatedProduct,
-//         });
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+export const updateResident = async (req, res, next) => {
+    try {
+        const updateResident = await Resident.findByIdAndUpdate(req.params.residentId, {
+            $set: req.body
+        }, { new: true });
+        res.status(200).send({
+            status: "Successful",
+            message: "Product Updated Successfully",
+            data: updateResident,
+        });
+    } catch (error) {
+        next(error)
+    }
+}
 
 // //DELETE USER
 // // /user/:userId
