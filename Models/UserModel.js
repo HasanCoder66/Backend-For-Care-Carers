@@ -1,7 +1,5 @@
-// import { Timestamp } from "mongodb";
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-
 
 const userSchema = new Schema(
   {
@@ -19,8 +17,8 @@ const userSchema = new Schema(
       required: true,
     },
     isAdmin: {
-        type: Boolean,
-        default: true
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }

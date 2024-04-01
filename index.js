@@ -1,10 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import authRoutes from "./Routes/authRoute.js";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import authRoutes from "./Routes/authRoute.js";
+import residentRoutes from "./Routes/residentRoute.js";
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(morgan('common'))
 app.use(cors())
 
 app.use('/api/auth' , authRoutes)
+app.use('/api/resident' , residentRoutes)
 
 
 const BackendConnect = () => {
