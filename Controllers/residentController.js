@@ -2,7 +2,7 @@ import Resident from "../Models/ResidentModel.js";
 
 //====================  NEW PRODUCT =========================//
 export const createResident = async (req, res, next) => {
-  const newResident = new ResidentModal(req.body);
+  const newResident = new Resident(req.body);
   try {
     const saveResident = await newResident.save();
     res.status(200).send({
@@ -54,22 +54,22 @@ export const deleteResident = async (req, res, next) => {
 // //GET USER
 // // /user/find/:userId
 
-// export const getProduct = async (req, res, next) => {
-//     try {
-//         const product = await Product.findById(req.params.productId);
-//         !product && res.status(404).send({
-//             status: "Failed",
-//             message: "Product not found",
-//         });
-//         res.status(200).send({
-//             status: "Successfull",
-//             message: "Product Found",
-//             data: product
-//         });
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+export const getResident = async (req, res, next) => {
+    try {
+        const resident = await Resident.findById(req.params.residentId);
+        !resident && res.status(404).send({
+            status: "Failed",
+            message: "Resident not found",
+        });
+        res.status(200).send({
+            status: "Successful",
+            message: "Resident Found",
+            data: resident
+        });
+    } catch (error) {
+        next(error)
+    }
+}
 
 //GET USER
 // /user/find
