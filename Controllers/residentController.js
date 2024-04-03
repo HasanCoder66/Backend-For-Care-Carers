@@ -1,13 +1,13 @@
 import Resident from "../Models/ResidentModel.js";
 
-//====================  NEW PRODUCT =========================//
+//====================  NEW RESIDENT =========================//
 export const createResident = async (req, res, next) => {
   const newResident = new Resident(req.body);
   try {
     const saveResident = await newResident.save();
     res.status(200).send({
       status: "Successful",
-      message: "Product Added Successfully",
+      message: "Resident Added Successfully",
       data: saveResident,
     });
   } catch (error) {
@@ -15,8 +15,8 @@ export const createResident = async (req, res, next) => {
   }
 };
 
-// //UPDATE USER
-// // /user/:userId
+// //UPDATE RESIDENT
+// // /user/:RESIDENTID
 export const updateResident = async (req, res, next) => {
   try {
     const updateResident = await Resident.findByIdAndUpdate(
@@ -28,7 +28,7 @@ export const updateResident = async (req, res, next) => {
     );
     res.status(200).send({
       status: "Successful",
-      message: "Product Updated Successfully",
+      message: "Resident Updated Successfully",
       data: updateResident,
     });
   } catch (error) {
@@ -36,7 +36,7 @@ export const updateResident = async (req, res, next) => {
   }
 };
 
-// //DELETE USER
+// //DELETE RESIDENT
 // // /user/:userId
 
 export const deleteResident = async (req, res, next) => {
@@ -44,14 +44,14 @@ export const deleteResident = async (req, res, next) => {
     await Resident.findByIdAndDelete(req.params.residentId);
     res.status(200).send({
       status: "Successful",
-      message: "Product deleted Successfully",
+      message: "Resident deleted Successfully",
     });
   } catch (error) {
     next(error);
   }
 };
 
-// //GET USER
+// //GET RESIDENT
 // // /user/find/:userId
 
 export const getResident = async (req, res, next) => {
@@ -71,31 +71,50 @@ export const getResident = async (req, res, next) => {
     }
 }
 
-//GET USER
+//GET RESIDENT
 // /user/find
-// export const getAllProducts = async (req, res, next) => {
-//     const queryNew = req.query.new;
-//     const queryCategory = req.query.category;
-//     const queryTags = req.query.tag;
-//     try {
+    export const getAllResidents = async (req, res, next) => {
+        try {
+          // Database query to retrieve all residents
+          const residents = await Resident.find();
+          
+          // Sending the retrieved residents as response
+          res.status(200).json({
+            status: "Success",
+            message: "All residents retrieved successfully",
+            data: residents,
+          });
+        } catch (error) {
+          // Handling errors
+          console.error("Error while retrieving residents:", error);
+          res.status(500).json({
+            status: "Error",
+            message: "Failed to retrieve residents",
+            error: error.message,
+          });
+        }
+      };
+    // const queryNew = req.query.new;
+    // const queryCategory = req.query.category;
+    // const queryTags = req.query.tag;
+    // try {
 
-//         let products;
-//         if (queryNew) {
-//             products = await Product.find().sort({ createdAt: -1 }).limit(5)
-//         } else if (queryCategory) {
-//             products = await Product.find({ categories: { $in: [queryCategory] } })
-//         } else if (queryTags) {
-//             products = await Product.find({ tags: { $in: [queryTags] } }).limit(4)
-//         } else {
-//             products = await Product.find();
-//         }
+    //     let products;
+    //     if (queryNew) {
+    //         products = await Product.find().sort({ createdAt: -1 }).limit(5)
+    //     } else if (queryCategory) {
+    //         products = await Product.find({ categories: { $in: [queryCategory] } })
+    //     } else if (queryTags) {
+    //         products = await Product.find({ tags: { $in: [queryTags] } }).limit(4)
+    //     } else {
+    //         products = await Product.find();
+    //     }
 
-//         res.status(200).send({
-//             status: "Successfull",
-//             message: "Products Found",
-//             data: products
-//         });
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+    //     res.status(200).send({
+    //         status: "Successfull",
+    //         message: "Products Found",
+    //         data: products
+    //     });
+    // } catch (error) {
+    //     next(error)
+    // }

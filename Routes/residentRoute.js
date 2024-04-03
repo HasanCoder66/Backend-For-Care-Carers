@@ -5,7 +5,7 @@ import {
   updateResident,
   deleteResident,
     getResident,
-//   getAllProducts,
+  getAllResidents,
 } from "../Controllers/residentController.js";
 
 const residentRoutes = express.Router();
@@ -23,6 +23,6 @@ residentRoutes.delete("/:residentId", verifyAdmin, deleteResident);
 residentRoutes.get("/find/:residentId", getResident);
 
 //======================= GET ALL PRODUCTS ======================//
-// residentRoutes.get("/find", getAllProducts);
+residentRoutes.get("/find", getAllResidents);
 
 export default residentRoutes;

@@ -11,6 +11,15 @@ const ResidentSchema = new Schema(
     photos: {
       type: [String],
     },
+    age: {
+      type: [String],
+    },
+    dob: {
+      type: [String],
+    },
+    career: {
+      type: [String],
+    },
 
     roomNo: {
       type: Number,
