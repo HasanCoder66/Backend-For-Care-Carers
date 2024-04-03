@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken"
 const { genSalt, hash } = bcryptjs
 
 //=========================== USER REGISTERATON ====================//
+// localhost:8800/api/auth/signup
 export const register = async (req, res, next) => {
   try {
     //==========HASHING PASSWORD USING BCRYPTJS===================//
@@ -43,6 +44,7 @@ export const register = async (req, res, next) => {
 };
 
 //=========================== USER LOGIN ====================//
+//localhost:8800/api/auth/login
 export async function login(req, res, next) {
     try {
         const user = await User.findOne({ email: req.body.email });
@@ -75,8 +77,8 @@ export async function login(req, res, next) {
     }
 }
 
-
-
+//=========================== USER FORGOT PASSWORD ====================//
+//localhost:8800/api/auth/login
 export async function forgotPassword(req, res, next) {
     try {
         const { email } = req.body;
