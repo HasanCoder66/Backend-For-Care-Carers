@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoutes from "./Routes/authRoute.js";
 import residentRoutes from "./Routes/residentRoute.js";
+import otpRoute from "./Routes/otpRoute.js";
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(morgan('common'))
 app.use(cors())
 
 app.use('/api/auth' , authRoutes)
+app.use('/api/otp' , otpRoute)
 app.use('/api/resident' , residentRoutes)
 
 
